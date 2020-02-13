@@ -8,20 +8,10 @@ import { PhotoService } from './photos/photo/photo.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  photos  : Object[] = [];
+export class AppComponent {
+  
 
   constructor(private service : PhotoService) {
-  }
-
-  ngOnInit(): void {
-    this.service.listFromUser('flavio')
-      .subscribe(photos => {
-         this.photos = photos;
-         console.log(JSON.stringify(this.photos));
-
-      }, err => console.log(err.message));
-  
   }
 
 }

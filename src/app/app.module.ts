@@ -3,16 +3,18 @@ import { NgModule } from '@angular/core';
 import { PhotoModule } from './photos/photo/photo.module';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
+import { AppRoutingModule } from './app.routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent    
+    AppComponent,
+    PhotoFormComponent
   ],
   imports: [
     BrowserModule,
     PhotoModule,
-    HttpClientModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
