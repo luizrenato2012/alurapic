@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotoService } from '../photo/photo.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ap-photo-list',
@@ -10,7 +11,8 @@ export class PhotoListComponent implements OnInit {
 
   photos  : Object[] = [];
   
-  constructor(private service : PhotoService) { }
+  constructor(private service : PhotoService,
+              private activactedRoute : ActivatedRoute) { }
 
   ngOnInit() {
     this.service.listFromUser('flavio')
