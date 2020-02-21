@@ -3,6 +3,7 @@ import { PhotoService } from '../photo/photo.service';
 import { ActivatedRoute } from '@angular/router';
 import { Photo } from '../photo/photo';
 import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'ap-photo-list',
@@ -19,7 +20,9 @@ export class PhotoListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.photos = this.activactedRoute.snapshot.data.photos;
-    this.subject.subscribe(valor => this.filter = valor);
+    this.subject
+      .pipe( debounceTime (300))
+      .subscribe(valor => this.filter = valor);
   }
 
   ngOnDestroy(): void {
