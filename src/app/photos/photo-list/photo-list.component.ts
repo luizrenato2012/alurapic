@@ -16,7 +16,12 @@ export class PhotoListComponent implements OnInit, OnDestroy {
   filter : string = '';
   subject : Subject<string> = new Subject<string>();
 
-  constructor(private activactedRoute : ActivatedRoute) { }
+  hasMore = true;
+  currrentPage:number = 1;
+  userName : string  = "";
+
+  constructor(private activactedRoute : ActivatedRoute,
+              private service : PhotoService) { }
 
   ngOnInit() {
     this.photos = this.activactedRoute.snapshot.data.photos;
@@ -27,6 +32,15 @@ export class PhotoListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subject.unsubscribe();
+  }
+
+  load() {
+    this.userName = this.activactedRoute.snapshot.params.userName;
+    this.service.listFromUserPaginated(this.userName, ++this.currrentPage)
+      .subscribe(photos => {
+        this.photos = photos;//this.photos.concat(photos);
+        if (!photos.length) this.hasMore = false;
+      });
   }
 
 }
