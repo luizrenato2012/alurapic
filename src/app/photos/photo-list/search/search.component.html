@@ -5,7 +5,8 @@
             class="rounded"
             type="search"
             placeholder="search..."
-            (keyup)="subject.next($event.target.value)"
+            (keyup)="debounce.next($event.target.value)"
+            [value]="value"
             autofocus>
     </form>
 </div>
